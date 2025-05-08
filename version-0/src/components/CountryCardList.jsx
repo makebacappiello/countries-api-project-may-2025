@@ -1,21 +1,26 @@
 import React from "react";
 import "../App.css";
+import CountryCard from "./CountryCard";
 
-export default function CountryCardList({
-  name,
-  population,
-  region,
-  capital,
-  img,
-}) {
+export default function CountryCardList({ localData }) {
   return (
-    <div className="cardA">
-      <h1>Country Detail</h1>
-      <img src={img} />
-      <p>COUNTRY: {name}</p>
-      <p>POPULATION: {population}</p>
-      <p>REGION:{region}</p>
-      <p>CAPITAL:{capital}</p>
-    </div>
+    <>
+      <div className="allCards">
+        {localData.map((item) => {
+          return (
+            <div className="cardDetail">
+              <CountryCard
+                key={item.cca3}
+                img={item.flags.png}
+                name={item.name.official}
+                population={item.population}
+                region={item.region}
+                capital={item.capital?.[0] || "N/A"}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
