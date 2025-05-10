@@ -6,8 +6,8 @@ import CountryDetail from "./pages/CountryDetail.jsx";
 function App() {
   return (
     <div>
-      <nav>
-        <ul>
+      <nav className="navbar">
+        <ul className="navLinks">
           <li>
             <Link to="/">Where in the world?</Link>
             {/* <Link to="/">Home</Link> */}

@@ -12,8 +12,8 @@ export default function CountryCard({
     <>
       <div className="card">
         <img src={img} />
-        <div className="ps">
-          <p>COUNTRY: {name}</p>
+        <div className="paragraphs">
+          <h1>{name}</h1>
           <p>POPULATION: {population}</p>
           <p>REGION:{region}</p>
           <p>CAPITAL:{capital}</p>
