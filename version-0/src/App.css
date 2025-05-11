@@ -18,7 +18,7 @@
   padding: 2em;
   width: 250px;
   height: 300px;
-  gap: 5px;
+  gap: 3px;
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -70,4 +70,27 @@
   text-decoration: none;
   color: #111517;
   font-weight: 800;
+}
+@media (max-width: 768px) {
+  .allCards {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .card {
+    width: 200px;
+    height: 300px;
+  }
+  .navLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .paragraphs h1 {
+    font-size: 0.8rem;
+  }
+  .paragraphs p {
+    font-size: 0.7rem;
+  }
 }
