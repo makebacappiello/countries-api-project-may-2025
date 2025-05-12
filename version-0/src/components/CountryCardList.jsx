@@ -12,7 +12,7 @@ export default function CountryCardList({ localData }) {
               <CountryCard
                 key={item.cca3}
                 img={item.flags.png}
-                name={item.name.official}
+                name={item.name.common}
                 population={item.population}
                 region={item.region}
                 capital={item.capital?.[0] || "N/A"}
