@@ -5,8 +5,9 @@ import "../App.css";
 export default function SavedCountries() {
   return (
     <>
-      <h1>Saved Countries</h1>
+      <h1>MY Saved Countries</h1>
       <CountryDetail />
+      <h1>My Profile</h1>
     </>
   );
 }
