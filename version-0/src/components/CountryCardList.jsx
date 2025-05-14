@@ -2,15 +2,15 @@ import React from "react";
 import "../App.css";
 import CountryCard from "./CountryCard";
 
-export default function CountryCardList({ localData }) {
+export default function CountryCardList({ data }) {
+  console.log("DATA", data);
   return (
     <>
       <div className="allCards">
-        {localData.map((item) => {
+        {data.map((item) => {
           return (
-            <div className="cardDetail">
+            <div key={item.cca3} className="cardDetail">
               <CountryCard
-                key={item.cca3}
                 img={item.flags.png}
                 name={item.name.common}
                 population={item.population}
