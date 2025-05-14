@@ -1,13 +1,77 @@
 import React from "react";
+import { useState } from "react";
 import CountryDetail from "./CountryDetail";
 import "../App.css";
 
 export default function SavedCountries() {
+  const [formData, setFormData] = useState({
+    name: "",
+    emailAddress: "",
+    country: "",
+    bio: "",
+  });
+  function handleChange(e) {
+    const { name, value, type } = e.target;
+    console.log("Name AND Value HERE:", name, value);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === "text" ? input : value,
+    }));
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("FORM DaTA", formData);
+  }
   return (
     <>
-      <h1>MY Saved Countries</h1>
-      <CountryDetail />
-      <h1>My Profile</h1>
+      <div className=" form">
+        <h1>MY Saved Countries</h1>
+        <CountryDetail />
+        <h1>My Profile</h1>
+        <div>
+          <label htmlFor="name">Full Name</label>
+          <input
+            className="input"
+            type="text"
+            name="name"
+            id="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="emailAddress"> Email</label>
+          <input
+            type="email"
+            name="emailAddress"
+            id="emailAddress"
+            value={formData.emailAddress}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="country">Country</label>
+          <input
+            type="text"
+            name="country"
+            id="country"
+            value={formData.country}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="bio">Bio</label>
+          <textarea
+            rows="8"
+            cols="50"
+            type="text"
+            name="bio"
+            id="bio"
+            value={formData.bio}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+      </div>
     </>
   );
 }
