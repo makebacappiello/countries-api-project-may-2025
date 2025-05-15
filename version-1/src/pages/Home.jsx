@@ -30,7 +30,7 @@ export default function Home() {
     // line 30 holds the jsx code that is shown in the ui
     <>
       <CountryCardList data={apiData} />
-      {/* on line 33 this CountrycardList is a component ie a child that gad been creasted in a separate file and imported into this parent card for rendering. */}
+      {/* on line 33 this CountrycardList is a component ie a child that has been created in a separate file and imported into this parent card for rendering. */}
     </>
   );
 }

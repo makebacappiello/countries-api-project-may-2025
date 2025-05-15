@@ -20,7 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SavedCountries" element={<SavedCountries />} />
-        <Route path="/CountryDetail" element={<CountryDetail />} />
+        <Route
+          path="/country-detail/:countryName"
+          element={<CountryDetail />}
+        />
       </Routes>
     </div>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import CountryDetail from "./CountryDetail";
 import "../App.css";
 
 export default function SavedCountries() {
@@ -15,7 +14,8 @@ export default function SavedCountries() {
     console.log("Name AND Value HERE:", name, value);
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: type === "text" ? input : value,
+      // this means copy everything that in is prevFormData,
+      [name]: value,
     }));
   }
   function handleSubmit(event) {
@@ -32,7 +32,6 @@ export default function SavedCountries() {
     <>
       <div className=" form">
         <h1>MY Saved Countries</h1>
-        <CountryDetail />
         <h1>My Profile</h1>
         <form className="form" onSubmit={handleSubmit}>
           <div>
