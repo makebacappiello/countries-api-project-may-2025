@@ -22,8 +22,8 @@
 .card {
   background-color: #ffffff;
   padding: 2em;
-  width: 250px;
-  height: 350px;
+  width: auto;
+  height: auto;
   gap: 3px;
   padding: 0px;
   display: flex;
@@ -31,7 +31,7 @@
   text-align: left;
   margin: 0;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .card img {
@@ -100,3 +100,26 @@
     font-size: 0.7rem;
   }
 }
+.country-detail {
+  padding: 2rem;
+  background-color: #fafafa;
+  color: #111517;
+  min-height: 100vh;
+}
+/* .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: pink;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+} */
+/* .card h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.card p {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+} */
