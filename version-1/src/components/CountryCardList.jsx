@@ -8,21 +8,22 @@ export default function CountryCardList({ data }) {
   return (
     <>
       <div className="allCards">
-        {data.map((item) => {
-          return (
-            <Link to={`/country-detail/${item.name.common}`}>
-              <div key={item.cca3} className="cardDetail">
-                <CountryCard
-                  img={item.flags.png}
-                  name={item.name.common}
-                  population={item.population}
-                  region={item.region}
-                  capital={item.capital?.[0] || "N/A"}
-                />
-              </div>
-            </Link>
-          );
-        })}
+        {data.map((item) => (
+          <Link
+            to={`/country-detail/${item.name.common}`}
+            key={item.cca3}
+            className="cardDetail"
+          >
+            <CountryCard
+              img={item.flags.png}
+              name={item.name.common}
+              population={item.population}
+              region={item.region}
+              capital={item.capital?.[0] || "N/A"}
+            />
+          </Link>
+        ))}
+        ;
       </div>
     </>
   );

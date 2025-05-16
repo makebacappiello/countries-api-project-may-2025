@@ -5,15 +5,15 @@ import CountryDetail from "./pages/CountryDetail.jsx";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [apiData, setApiData] useState([]);
-  
+  const [apiData, setApiData] = useState([]);
+
   useEffect(() => {
     const getApiData = async () => {
       try {
-        const response = await fetch ("https://restcountries.com/v3.1/all");
+        const response = await fetch("https://restcountries.com/v3.1/all");
         const data = await response.json();
         setApiData(data);
-      } catch (error) { 
+      } catch (error) {
         console.error("Oops! Error fetching data:", error);
       }
     };
@@ -21,7 +21,6 @@ function App() {
     getApiData();
   }, []);
 
-  
   return (
     <div>
       <nav className="navbar">
@@ -35,11 +34,14 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<Home apiData={apiData}/>} />
-        <Route path="/SavedCountries" element={<SavedCountries apiData={apiData}/>} />
+        <Route path="/" element={<Home apiData={apiData} />} />
+        <Route
+          path="/SavedCountries"
+          element={<SavedCountries apiData={apiData} />}
+        />
         <Route
           path="/country-detail/:countryName"
-          element={<CountryDetail apiData={apiData}/>}
+          element={<CountryDetail apiData={apiData} />}
         />
       </Routes>
     </div>
