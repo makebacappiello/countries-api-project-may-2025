@@ -263,6 +263,19 @@ form textarea {
   border-radius: 8px;
   border: 1px solid #6b7280;
 }
+.saved-country-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.saved-country-card img {
+  width: 60px;
+  height: auto;
+}
 @media (max-width: 768px) {
   .allCards {
     grid-template-columns: 1fr;

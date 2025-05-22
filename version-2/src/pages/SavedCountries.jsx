@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../App.css";
+import CountryCard from "../components/CountryCard";
 
 // The export default function component defines the component called SavedCountries which can be reused by my App.
 
@@ -97,10 +98,36 @@ export default function SavedCountries() {
   // once we have retrieved the form data we need to render it to the page meaning in the return()
   // store the retrievieved data in the state variable aka set the state variable
   console.log(formData.name);
+
+  const [savedCountries, setSavedCountries] = useState([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("savedCountries");
+    if (stored) {
+      try {
+        setSavedCountries(JSON.parse(stored));
+      } catch (error) {
+        console.error("Invalid savedCountries data");
+      }
+    }
+  }, []);
+
   return (
     <>
-      <div className=" form">
+      <div className="saved-page">
         <h1>MY Saved Countries</h1>
+        {savedCountries.length > 0 ? (
+          <div className="allCards">
+            {savedCountries.map((country, index) => (
+              <CountryCard key={index} country={country} />
+            ))}
+          </div>
+        ) : (
+          <p>No Country Saved Yet!</p>
+        )}
+      </div>
+      );
+      <div className=" form">
         <h1>My Profile</h1>
         {/* Display headers for UI */}
 
