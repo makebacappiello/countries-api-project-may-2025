@@ -1,0 +1,324 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.allCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 2rem;
+  justify-items: center;
+  background-color: #fafafa;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 2em;
+  width: auto;
+  height: auto;
+  gap: 3px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0;
+  border-radius: 8px;
+  overflow: scroll;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.paragraphs {
+  padding: 0.5rem;
+  display: flex;
+  flex: column;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+.paragraphs p {
+  font-size: 0.95rem;
+  margin: 0.2rem;
+  color: #111517;
+}
+.paragraphs h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #111517;
+}
+.navbar {
+  background-color: #ffffff;
+  padding: 1rem;
+}
+.navLinks {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.navLinks a {
+  text-decoration: none;
+  color: #111517;
+  font-weight: 800;
+}
+.country-detail {
+  padding: 4rem 2rem;
+  background-color: #fafafa;
+  color: #111517;
+  min-height: 100vh;
+}
+.card.country-detail-card {
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 0;
+  text-align: left;
+}
+.country-detail-flag {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+.country-detail-text {
+  /* margin-top: 1rem; */
+  /* text-align: left; */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.country-detail-text h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #111517;
+}
+
+/* .detail-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+} */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.column p {
+  margin: 0;
+  font-size: 1rem;
+  color: #111517;
+}
+.save-button,
+.back-button {
+  margin-top: 2rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1.5rem;
+  color: #111517;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+/* .back-button {
+  margin-bottom: 2rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background-color: white;
+  color: #111517;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+} */
+
+.form {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  font-family: "Nunito Sans", sans-serif;
+}
+.form h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111517;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.form h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111517;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5;
+}
+.form label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+.form input,
+form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fafafa;
+  color: #111517;
+}
+.button {
+  display: inline-block;
+  background-color: #111517;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+.button:hover {
+  background-color: #2b2f37;
+}
+.saved-info-card {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  font-family: "Inter", sans-serif;
+  color: #2b2f37;
+  margin-inline: auto;
+}
+.saved-info-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+.info-group {
+  margin-bottom: 1rem;
+}
+.info-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.info-group p {
+  font-size: 1rem;
+  background: #f9fafb;
+  color: #111517;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #6b7280;
+}
+@media (max-width: 768px) {
+  .allCards {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .card {
+    width: 200px;
+    height: 350px;
+  }
+  .card.country-detail-card {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+  .country-detail-flag {
+    max-width: 100%;
+  }
+  .country-detail-text h2 {
+    font-size: 1.5rem;
+  }
+  .country-detail-text p {
+    font-size: 0.95rem;
+  }
+  .navLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .paragraphs h1 {
+    font-size: 0.8rem;
+  }
+  .paragraphs p {
+    font-size: 0.7rem;
+  }
+}
+.country-detail {
+  padding: 2rem;
+  background-color: #fafafa;
+  color: #111517;
+  min-height: 100vh;
+}
+@media (max-width: 480px) {
+  .form {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+  .form h1 {
+    font-size: 1.5rem;
+  }
+  .form input,
+  .form textarea {
+    font-size: 0.95rem;
+  }
+  .button {
+    font-size: 0.95rem;
+  }
+}
