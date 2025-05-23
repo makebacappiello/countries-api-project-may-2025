@@ -5,7 +5,7 @@ import CountryCard from "../components/CountryCard";
 
 // The export default function component defines the component called SavedCountries which can be reused by my App.
 
-export default function SavedCountries() {
+export default function SavedCountries({ population, capital, region }) {
   // formData holds the values for each input field in my form
   // setFormData is the function to update formData
   // useState({...}) begins the formData with empty strings.
@@ -119,7 +119,14 @@ export default function SavedCountries() {
         {savedCountries.length > 0 ? (
           <div className="allCards">
             {savedCountries.map((country, index) => (
-              <CountryCard key={index} country={country} />
+              <CountryCard
+                key={index}
+                img={country.flags.png}
+                population={country.population}
+                region={country.region}
+                capital={country.capital?.[0] || "N/A"}
+                // country={country}
+              />
             ))}
           </div>
         ) : (
