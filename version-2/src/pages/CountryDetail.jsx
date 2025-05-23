@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -6,9 +6,22 @@ import { useParams } from "react-router-dom";
 export default function CountryDetail({ apiData }) {
   const { countryName } = useParams();
   console.log(countryName);
+
+  const [viewCount, setViewCount] = useState(0);
+
   const country = apiData.find(
     (c) => c.name.common.toLowerCase() === countryName.toLowerCase()
   );
+  useEffect(() => {
+    if (!country) return;
+    const viewCounts = JSON.parse(localStorage.getItem("viewCounts")) || {};
+    const currentViews = viewCounts[country.name.common] || 0;
+    const newViews = currentViews + 1;
+    viewCounts[country.name.common] = newViews;
+    localStorage.setItem("viewCounts", JSON.stringify(viewCounts));
+    setViewCount(newViews);
+  }, [country]);
+
   if (!country) {
     return (
       <div className="country-detail">
@@ -59,6 +72,25 @@ export default function CountryDetail({ apiData }) {
                 <p>POPULATION: {country.population.toLocaleString()}</p>
                 <p>REGION:{country.region}</p>
                 <p>CAPITAL:{country.capital?.[0] || "No Capital Found"}</p>
+                <p>
+                  VIEWED: {viewCount} time{viewCount !== 1 && "s"}
+                </p>
+                <p>
+                  BORDERS:{""}
+                  {country.borders && country.borders.length > 0
+                    ? country.borders
+                        .map((borderCode) => {
+                          const borderCountry = apiData.find(
+                            (c) => c.cca3 === borderCode
+                          );
+                          return borderCode
+                            ? borderCountry.name.common
+                            : borderCode;
+                        })
+                        .join(",")
+                    : "None"}
+                </p>
+                {/* this code checks each border code in country.borders, finds the corresponding country in apiData , and displays the name. */}
               </div>
             </div>
           </div>

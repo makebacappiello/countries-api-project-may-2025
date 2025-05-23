@@ -5,7 +5,12 @@ import CountryCard from "../components/CountryCard";
 
 // The export default function component defines the component called SavedCountries which can be reused by my App.
 
-export default function SavedCountries({ population, capital, region }) {
+export default function SavedCountries({
+  population,
+  capital,
+  region,
+  borders,
+}) {
   // formData holds the values for each input field in my form
   // setFormData is the function to update formData
   // useState({...}) begins the formData with empty strings.
@@ -125,6 +130,7 @@ export default function SavedCountries({ population, capital, region }) {
                 population={country.population}
                 region={country.region}
                 capital={country.capital?.[0] || "N/A"}
+                borders={country.borders}
                 // country={country}
               />
             ))}
