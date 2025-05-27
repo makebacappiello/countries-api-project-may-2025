@@ -1,7 +1,11 @@
 import React from "react";
+// required for JSX to work (eg: <div>, <form> )
 import { useState, useEffect } from "react";
+// React hooks used for managing components and side effects like on Load...do this or that
 import "../App.css";
+// necessary for page styling
 import CountryCard from "../components/CountryCard";
+// A reusable component to render country data.
 
 // The export default function component defines the component called SavedCountries which can be reused by my App.
 
@@ -15,16 +19,22 @@ export default function SavedCountries() {
     country: "",
     bio: "",
   });
+  // formData manages form input values and its original state is an empty string. see Controlled Components from React Docs for reference
 
   const [storedUserInfo, setStoredUserInfo] = useState(null);
 
-  // storedUserInfo is a state that holds the stringified version of the form data ie held from localStorage with a value of  null meaning there is no initial value yet.
+  // storedUserInfo is a state that holds the parsed version of the form data ie held from localStorage with a value of  null meaning there is no initial value yet.
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  // this useState hook tracks whether the user has submitted the form
 
   function handleChange(e) {
     const { name, value } = e.target;
 
     // e.target this is the input that triggered the event
     // {name,value}: destructures the name and value from the input.eg name:(emailaddress), value:(rasin@UNSAFE_getTurboStreamSingleFetchDataStrategy.com)
+    // basically it updates form fields based on name.
+    // https://reactjs.org/docs/handling-events.html
 
     console.log("Name AND Value HERE:", name, value);
     setFormData((prevFormData) => ({
@@ -42,15 +52,18 @@ export default function SavedCountries() {
 
     const userInfoString = JSON.stringify(formData);
 
-    // the const userInfoString represents the conversion of formDatainto a string and stores the string in the browser's localStorage using the key "userinfo" below
+    // the const userInfoString represents the conversion of formData into a string and stores the string in the browser's localStorage using the key "userinfo" below
 
     localStorage.setItem("userInfo", userInfoString);
 
-    console.log(userInfoString, "USER INFO StrinGSSS");
+    // console.log(userInfoString, "USER INFO StrinGSSS");
 
-    setStoredUserInfo(userInfoString);
+    setStoredUserInfo(formData);
 
     // setStoredUserInfo(userInfoString)updates the state so that it can be displayed later on the form
+
+    setIsSubmitted(true);
+    // this changes the state of submitted to true
 
     // the code below resets the form to blank
     setFormData({
@@ -61,18 +74,19 @@ export default function SavedCountries() {
     });
   }
 
-  let parsedStoredInfo = null;
-
+  // ERROR (
   // if below there is something in storedUserInfo, convert it back to an object for rendering
   // Wrap in try...catch in case the stored string is corrupted or not valid JSON
 
-  if (storedUserInfo) {
-    try {
-      parsedStoredInfo = JSON.parse(storedUserInfo);
-    } catch (error) {
-      console.error("Error parsing saved user info:", error);
-    }
-  }
+  // if (storedUserInfo) {
+  //   try {
+  //     parsedStoredInfo = JSON.parse(storedUserInfo);
+  //   } catch (error) {
+  //     console.error("Error parsing saved user info:", error);
+  //   }
+  // }
+  // END OF ERROR)
+
   // useEffect runs once when the component first loads ([]) dependancy array)
   useEffect(() => {
     const userInfoString = localStorage.getItem("userInfo");
@@ -83,11 +97,21 @@ export default function SavedCountries() {
     // set the data as storedUserInfo
 
     if (userInfoString) {
-      const parsedUserInfo = JSON.parse(userInfoString);
-      setFormData(parsedUserInfo);
-      console.log(parsedUserInfo, "STORED USER INFO");
+      try {
+        const parsedUserInfo = JSON.parse(userInfoString);
+        setStoredUserInfo(parsedUserInfo);
+        // parses the data
+        setFormData(parsedUserInfo);
+        // updates the data here
+        setIsSubmitted(true);
+        // console.log(parsedUserInfo, "STORED USER INFO");
+      } catch (error) {
+        console.error("Error parsing user info:", error);
+      }
     }
   }, []);
+
+  // STEPS ...
   // if saved data exists, convert it back into an object using the JSON.parse()
   // update the form fields with that saved data.
   // then console.logs it for debugging any issues
@@ -97,9 +121,12 @@ export default function SavedCountries() {
   // with use useEffect
   // once we have retrieved the form data we need to render it to the page meaning in the return()
   // store the retrievieved data in the state variable aka set the state variable
+  // END OF STEPS....
+
   console.log(formData.name);
 
   const [savedCountries, setSavedCountries] = useState([]);
+  //  this const holds an array of saved country objects
 
   useEffect(() => {
     const stored = localStorage.getItem("savedCountries");
@@ -112,7 +139,11 @@ export default function SavedCountries() {
     }
   }, []);
 
+  // the useEffect above also runs on mount (first run )
+  // it retrieves and parses saved country data
+
   return (
+    // EVERYTHING shown in the UI goes here
     <>
       <div className="saved-page">
         <h1>MY Saved Countries</h1>
@@ -135,13 +166,17 @@ export default function SavedCountries() {
           <p>No Country Saved Yet!</p>
         )}
       </div>
-      );
+      {/* displays a list of CountryCard components */}
+      {/* Uses optional chaining ( capital.[0]) for safety. */}
+
       <div className=" form">
         <h1>My Profile</h1>
         {/* Display headers for UI */}
-
-        {formData.name.length > 0 && <h2>Welcome back, {formData.name}! </h2>}
-        {/* if there is a name on the form greet the User */}
+        {isSubmitted && storedUserInfo && (
+          <h2>Welcome back, {storedUserInfo.name}! </h2>
+        )}
+        {/* The code above shows greeting if form was submitted and info exists */}
+        {/* Renders form inputs with value ond onChange  */}
 
         <form className="form" onSubmit={handleSubmit}>
           {/* submitting the form runs the handleSubmit */}
@@ -205,30 +240,30 @@ export default function SavedCountries() {
             {/* the submit button */}
           </div>
         </form>
-
         {/* if saved data is available, show it below the form. */}
         {/* This uses the parsed object to access and render each field. */}
 
-        {parsedStoredInfo && (
+        {storedUserInfo && (
           <div className="saved-info">
             <h2>Saved Profile Info</h2>
             <div className="info-group">
               <label>Name</label>
-              <p>Name: {parsedStoredInfo.name}</p>
+              <p>Name: {storedUserInfo.name}</p>
             </div>
             <div className="info-group">
               <label>Email</label>
-              <p>Email:{parsedStoredInfo.emailAddress}</p>
+              <p>Email:{storedUserInfo.emailAddress}</p>
             </div>
             <div className="info-group">
               <label>Country</label>
-              <p>Country:{parsedStoredInfo.country}</p>
+              <p>Country:{storedUserInfo.country}</p>
             </div>
             <div className="info-group">
               <label>Bio</label>
-              <p>Bio:{parsedStoredInfo.bio}</p>
+              <p>Biography:{storedUserInfo.bio}</p>
             </div>
           </div>
+          // this displays saved profile information
         )}
       </div>
     </>
