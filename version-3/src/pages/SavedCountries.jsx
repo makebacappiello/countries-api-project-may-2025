@@ -128,16 +128,31 @@ export default function SavedCountries() {
   const [savedCountries, setSavedCountries] = useState([]);
   //  this const holds an array of saved country objects
 
+  const updateSavedCountries = async () => {
+    const response = await fetch("/api/get-all-saved-countries", {
+      method: "GET",
+    });
+
+    const savedCountryData = await response.json();
+    console.log(savedCountryData, "SAVED COIUNTRY DAta");
+  };
+  setSavedCountries(updateSavedCountries);
+
   useEffect(() => {
-    const stored = localStorage.getItem("savedCountries");
-    if (stored) {
-      try {
-        setSavedCountries(JSON.parse(stored));
-      } catch (error) {
-        console.error("Invalid savedCountries data");
-      }
-    }
-  }, []);
+
+    if (!stored)
+      return;
+      updateSavedCountries();
+      } [savedCountries]);
+  if
+      (stored){
+       return (
+        console.error("Invalid savedCountries data")
+       );
+             },
+      [];}
+
+  
 
   // the useEffect above also runs on mount (first run )
   // it retrieves and parses saved country data
