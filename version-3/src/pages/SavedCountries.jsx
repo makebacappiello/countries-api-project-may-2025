@@ -108,6 +108,7 @@ export default function SavedCountries() {
 
   // THIS async function fetches and updates the saved countries below
   const updateSavedCountries = async () => {
+    console.log("Running updateSavedCountries...");
     try {
       const response = await fetch("/api/get-all-saved-countries", {
         method: "GET",
@@ -132,6 +133,7 @@ export default function SavedCountries() {
     return <div>Loading...</div>;
   }
   useEffect(() => {
+    console.log("Updated saved countries ");
     // fetch saved countries when the component mounts
     updateSavedCountries();
   }, []);
