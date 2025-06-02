@@ -7,6 +7,8 @@ import "../App.css";
 import CountryCard from "../components/CountryCard";
 // A reusable component to render country data.
 
+// ____________________________________FORM DATA___________________________________________
+
 // The export default function component defines the component called SavedCountries which can be reused by my App.
 
 export default function SavedCountries() {
@@ -100,6 +102,8 @@ export default function SavedCountries() {
 
   console.log(formData.name);
 
+  // ___________________________________________SAVED COUNTRIES __________________________________________
+
   const [isLoading, setIsLoading] = useState(true);
   // in the event if the savedCountries array is empty(no countries saved)this state may not necessarily be loading so to validate this message I added this state in boolean form
 
@@ -129,9 +133,7 @@ export default function SavedCountries() {
       // this line is used to mark loading as complete
     }
   };
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+
   useEffect(() => {
     console.log("Updated saved countries ");
     // fetch saved countries when the component mounts
@@ -148,7 +150,10 @@ export default function SavedCountries() {
   if (!savedCountries.length) {
     return <div>Loading...</div>;
   }
-
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  // ________________________________________THE UI RETURN__________________________________________________
   return (
     // EVERYTHING shown in the UI goes here
     <>
@@ -159,7 +164,7 @@ export default function SavedCountries() {
             {savedCountries.map((country, index) => (
               <CountryCard
                 key={index}
-                img={country.flags.png}
+                img={country.flag}
                 name={country.name.common}
                 population={country.population}
                 region={country.region}
