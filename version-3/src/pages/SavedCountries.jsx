@@ -74,19 +74,6 @@ export default function SavedCountries() {
     });
   }
 
-  // ERROR (
-  // if below there is something in storedUserInfo, convert it back to an object for rendering
-  // Wrap in try...catch in case the stored string is corrupted or not valid JSON
-
-  // if (storedUserInfo) {
-  //   try {
-  //     parsedStoredInfo = JSON.parse(storedUserInfo);
-  //   } catch (error) {
-  //     console.error("Error parsing saved user info:", error);
-  //   }
-  // }
-  // END OF ERROR)
-
   // useEffect runs once when the component first loads ([]) dependancy array)
   useEffect(() => {
     const userInfoString = localStorage.getItem("userInfo");
@@ -111,51 +98,54 @@ export default function SavedCountries() {
     }
   }, []);
 
-  // STEPS ...
-  // if saved data exists, convert it back into an object using the JSON.parse()
-  // update the form fields with that saved data.
-  // then console.logs it for debugging any issues
-
-  // we want to retrieve the form data from local storage
-  // we want to run the page on load
-  // with use useEffect
-  // once we have retrieved the form data we need to render it to the page meaning in the return()
-  // store the retrievieved data in the state variable aka set the state variable
-  // END OF STEPS....
-
   console.log(formData.name);
+
+  const [isLoading, setIsLoading] = useState(true);
+  // in the event if the savedCountries array is empty(no countries saved)this state may not necessarily be loading so to validate this message I added this state in boolean form
 
   const [savedCountries, setSavedCountries] = useState([]);
   //  this const holds an array of saved country objects
 
+  // THIS async function fetches and updates the saved countries below
   const updateSavedCountries = async () => {
-    const response = await fetch("/api/get-all-saved-countries", {
-      method: "GET",
-    });
+    try {
+      const response = await fetch("/api/get-all-saved-countries", {
+        method: "GET",
+      });
 
-    const savedCountryData = await response.json();
-    console.log(savedCountryData, "SAVED COIUNTRY DAta");
+      if (response.ok) {
+        const savedCountryData = await response.json();
+        console.log(savedCountryData, "SAVED COUNTRY DATA");
+        setSavedCountries(savedCountryData);
+        // sets the fetched data here
+      } else {
+        console.error("Invalid savedCountries data");
+      }
+    } catch (error) {
+      console.error("Error fetching saved countries:", error);
+    } finally {
+      setIsLoading(false);
+      // this line is used to mark loading as complete
+    }
   };
-  setSavedCountries(updateSavedCountries);
-
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   useEffect(() => {
+    // fetch saved countries when the component mounts
+    updateSavedCountries();
+  }, []);
+  // the useEffect above also runs on mount (first run ) when savedCountries updates
+  useEffect(() => {
+    if (!savedCountries || savedCountries.length === 0) return;
 
-    if (!stored)
-      return;
-      updateSavedCountries();
-      } [savedCountries]);
-  if
-      (stored){
-       return (
-        console.error("Invalid savedCountries data")
-       );
-             },
-      [];}
-
-  
-
-  // the useEffect above also runs on mount (first run )
-  // it retrieves and parses saved country data
+    // Logic that will happen when savedCountries changes
+    console.log(savedCountries, "Updated saved countries");
+  }, [savedCountries]);
+  //  effect runs when saved countries  changes this is conditional rendering for loading
+  if (!savedCountries.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
     // EVERYTHING shown in the UI goes here

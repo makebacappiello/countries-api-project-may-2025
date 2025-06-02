@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export default function CountryDetail({ apiData }) {
   const { countryName } = useParams();
-  console.log(countryName), COUNTRYNaME;
+  console.log(countryName, "Country Name");
 
   const [viewCount, setViewCount] = useState(0);
   const updateViewCount = async () => {
