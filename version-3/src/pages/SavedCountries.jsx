@@ -114,13 +114,22 @@ export default function SavedCountries() {
   const updateSavedCountries = async () => {
     console.log("Running updateSavedCountries...");
     try {
-      const response = await fetch("/api/get-all-saved-countries", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,capital,common,flags,population,region,borders",
+        {
+          method: "GET",
+        }
+      );
 
       if (response.ok) {
         const savedCountryData = await response.json();
-        console.log(savedCountryData, "SAVED COUNTRY DATA");
+        console.log(
+          "FULL API RESPONSE ",
+          savedCountryData,
+          "SAVED COUNTRY DATA"
+        );
+        console.log(Array.isArray(savedCountryData));
+        // the array.isarray log is used for debugging to see if api call is returning an array of country objects.should log as true
         setSavedCountries(savedCountryData);
         // sets the fetched data here
       } else {
@@ -153,26 +162,33 @@ export default function SavedCountries() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  console.log("savedCountries card", savedCountries);
+
   // ________________________________________THE UI RETURN__________________________________________________
+
   return (
     // EVERYTHING shown in the UI goes here
     <>
       <div className="saved-page">
         <h1>MY Saved Countries</h1>
         {savedCountries.length > 0 ? (
+          // this means filter so as to only show countries with valid name...then map below
+
           <div className="allCards">
-            {savedCountries.map((country, index) => (
-              <CountryCard
-                key={index}
-                img={country.flag}
-                name={country.name.common}
-                population={country.population}
-                region={country.region}
-                capital={country.capital?.[0] || "N/A"}
-                borders={country.borders}
-                // country={country}
-              />
-            ))}
+            {savedCountries
+              // .filter((country) => country?.name?.common)
+              .map((country, index) => (
+                <CountryCard
+                  key={index}
+                  img={country.flags?.svg || country.flags?.png}
+                  // name={country.name.common}
+                  name={country.common}
+                  population={country.population || "unknown"}
+                  region={country.region || "unknown"}
+                  capital={country.capital?.[0] || "N/A"}
+                  borders={country.borders}
+                />
+              ))}
           </div>
         ) : (
           <p>No Country Saved Yet!</p>

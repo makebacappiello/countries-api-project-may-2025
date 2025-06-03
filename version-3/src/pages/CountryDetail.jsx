@@ -89,7 +89,7 @@ export default function CountryDetail({ apiData }) {
       alert("This country is already saved.");
     }
   }
-
+  console.log("Each country object:", country);
   return (
     <div className="country-detail">
       <Link to="/">
