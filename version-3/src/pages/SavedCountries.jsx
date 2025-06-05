@@ -11,7 +11,7 @@ import CountryCard from "../components/CountryCard";
 
 // The export default function component defines the component called SavedCountries which can be reused by my App.
 
-export default function SavedCountries() {
+export default function SavedCountries({ apiData }) {
   // formData holds the values for each input field in my form
   // setFormData is the function to update formData
   // useState({...}) begins the formData with empty strings.
@@ -103,6 +103,7 @@ export default function SavedCountries() {
   console.log(formData.name);
 
   // ___________________________________________SAVED COUNTRIES __________________________________________
+  // this gets the full information filled card from the restAPI
 
   const [isLoading, setIsLoading] = useState(true);
   // in the event if the savedCountries array is empty(no countries saved)this state may not necessarily be loading so to validate this message I added this state in boolean form
@@ -110,16 +111,59 @@ export default function SavedCountries() {
   const [savedCountries, setSavedCountries] = useState([]);
   //  this const holds an array of saved country objects
 
+  // function filteredCountryByCommonName(filteredCountry){
+  // const [searchNames, setSearchNames] useState =('[]');
+  const restCountryArray = apiData;
+  // console.log(restCountryArray, "ORIGINAL CARDS");
+
+  // inputs: info from savedCountryData,
+  // [
+  //   {
+  //     "country_name": "Japan"
+  //   },
+  //   {
+  //     "country_name": "Germany"
+  //   }
+  // ]
+  // info from the apiData
+  // an array of objects
+  //
+
+  // first filter apiData using the fields from savedCountryData ie country_name
+
+  // the filtered constant holds the list of countries from my API data (restCountryArray) that match something from saved countries
+
+  const filteredCountries = restCountryArray.filter(
+    (country) =>
+      //  if the commonName from apiData matches any item from savedCountryData then it is filtered using the .filter.
+
+      // the (country) function runs once for each country
+      // if the function returns true,the country stays on the list. if false its removed above.
+      // outputs: filtered information from the apiData
+      // also an array of objects
+
+      // for the savedCountries.some((saved) =>...)
+
+      // For each country from the API, we want to check: "Is this country saved by the user?"
+      // .some goes through the savedCountries array from the backend/API.
+      // It checks if at least one saved country object (saved) matches the current country being filtered
+
+      savedCountries.some(
+        (saved) => saved.country_name === country.name?.common
+      )
+    // this is the actual comparison line above here
+  );
+  console.log(filteredCountries, "FILTERED COUNTRIES");
+  // console.log(savedCountries.some(saved), "SAVED COUNTRIES");NOT WORKING!! ERROR!!!
+  // we want to represent the allSavedCountries data using the aPIdata
+
   // THIS async function fetches and updates the saved countries below
   const updateSavedCountries = async () => {
     console.log("Running updateSavedCountries...");
     try {
-      const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=name,capital,common,flags,population,region,borders",
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch("/api/get-all-saved-countries", {
+        method: "GET",
+      });
 
       if (response.ok) {
         const savedCountryData = await response.json();
@@ -171,24 +215,21 @@ export default function SavedCountries() {
     <>
       <div className="saved-page">
         <h1>MY Saved Countries</h1>
-        {savedCountries.length > 0 ? (
+        {filteredCountries.length > 0 ? (
           // this means filter so as to only show countries with valid name...then map below
 
           <div className="allCards">
-            {savedCountries
-              // .filter((country) => country?.name?.common)
-              .map((country, index) => (
-                <CountryCard
-                  key={index}
-                  img={country.flags?.svg || country.flags?.png}
-                  // name={country.name.common}
-                  name={country.common}
-                  population={country.population || "unknown"}
-                  region={country.region || "unknown"}
-                  capital={country.capital?.[0] || "N/A"}
-                  borders={country.borders}
-                />
-              ))}
+            {filteredCountries.map((country, index) => (
+              <CountryCard
+                key={index}
+                img={country.flags?.svg || country.flags?.png}
+                name={country.name?.common}
+                population={country.population || "unknown"}
+                region={country.region || "unknown"}
+                capital={country.capital?.[0] || "N/A"}
+                borders={country.borders}
+              />
+            ))}
           </div>
         ) : (
           <p>No Country Saved Yet!</p>
