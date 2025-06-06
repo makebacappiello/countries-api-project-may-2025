@@ -69,27 +69,34 @@ export default function CountryDetail({ apiData }) {
   }
 
   function countrySave() {
-    let savedCountries = JSON.parse(localStorage.getItem("savedCountries"));
-    console.log(savedCountries);
-    //  retrieve existing saved countries
-    if (!savedCountries) {
-      savedCountries = [];
-    }
-    // starts as empty array if none are saved yet.
-
-    const alreadySaved = savedCountries.some(
-      (item) => item.name.common === country.name.common
-    );
-    // to avoid saving duplicates
-    if (!alreadySaved) {
-      const updated = [...savedCountries, country];
-      localStorage.setItem("savedCountries", JSON.stringify(updated));
-      alert("Country Saved!");
-    } else {
-      alert("This country is already saved.");
-    }
+    const saveCountryToDataBase = async () => {
+      try {
+        const response = await fetch("/api/save-one-country", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            country_name: countryName,
+          }),
+        });
+        const text = await response.text();
+        // use .text instead of .json()
+        if (!response.ok) {
+          // if country was already saved or error occurred
+          alert("Failed to save country" + text);
+          return;
+        }
+        console.log("SAVED TO BACKEND:", text);
+        alert("Country saved successfully!");
+      } catch (error) {
+        console.error("Save failed:", error.message);
+        alert("Something went wrong while saving. ");
+      }
+    };
+    saveCountryToDataBase();
   }
-  console.log("Each country object:", country);
+
   return (
     <div className="country-detail">
       <Link to="/">
