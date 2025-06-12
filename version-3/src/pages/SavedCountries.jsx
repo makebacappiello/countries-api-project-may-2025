@@ -69,10 +69,7 @@ export default function SavedCountries({ apiData }) {
             bio: formData.bio,
           }),
         });
-
-        const userInfoData = await response.json();
-        console.log(userInfoData, "USER INFO DATA");
-
+        console.log(response, "FETCH USER INFO RESPONSE");
         setIsSubmitted(true);
         // this changes the state of submitted to true
 
@@ -102,13 +99,17 @@ export default function SavedCountries({ apiData }) {
             "Content-Type": "application/json",
           },
         });
-        const newestUserData = await response.json();
-        if (newestUserData) {
+        const data = await response.json();
+
+        if (Array.isArray(data) && data.length > 0) {
+          const newestUserData = data[0];
+          // get the first object from the Array
+
           setStoredUserInfo(newestUserData);
           setFormData({
-            name: newestUserData.name || "",
+            name: newestUserData.name,
             emailAddress: newestUserData.email || "",
-            country: newestUserData.country || "",
+            country: newestUserData.country_name || "",
             bio: newestUserData.bio || "",
           });
           setIsSubmitted(true);
@@ -262,9 +263,7 @@ export default function SavedCountries({ apiData }) {
       <div className=" form">
         <h1>My Profile</h1>
         {/* Display headers for UI */}
-        {isSubmitted && storedUserInfo && (
-          <h2>Welcome back, {storedUserInfo.name}! </h2>
-        )}
+        {formData.name && <h2>Welcome back, {formData.name}! </h2>}
         {/* The code above shows greeting if form was submitted and info exists */}
         {/* Renders form inputs with value ond onChange  */}
 
@@ -346,7 +345,7 @@ export default function SavedCountries({ apiData }) {
             </div>
             <div className="info-group">
               <label>Country</label>
-              <p>Country:{storedUserInfo.country}</p>
+              <p>Country:{storedUserInfo.country_name}</p>
             </div>
             <div className="info-group">
               <label>Bio</label>
