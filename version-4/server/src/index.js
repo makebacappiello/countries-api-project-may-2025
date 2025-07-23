@@ -54,10 +54,43 @@ async function addOneUser(users) {
 // Helper function for /update-one-user
 
 async function updateOneCountryCount(countryObject) {
-  await db.query(
-    "UPDATE country_counts SET count = count + 1 WHERE country_name = $1",
+
+  //first we check if  country count exists 
+  //then if it does not exist we want to add the country name and its initial count of 1 to the table
+  //else we increase the count by 1
+  //then return the existing country count
+
+
+  // (
+  //SELECT country_name,count
+//FROM country_counts
+//WHERE country_name = 'Fiji';)
+//
+
+if (!countryObject.country_name){
+  await db.query("INSERT INTO saved_countries(country_name) VALUES ($1)", [
+    countryObject.country_name,
+  ]);
+};
+
+//then Insert One Country Count()0
+//INSERT INTO country_counts(country_name,count)
+//VALUES ('Venezuela', 1);)
+
+{await db.query("INSERT INTO country_counts(country_name,count) VALUES ($1, 1);)",[ countryObject.country_name])
+};
+
+//then Update a Country Count By Incrementing Its Count By 1
+//UPDATE country_counts
+//SET count = count + 1
+//WHERE country_name = 'Grenada';
+
+//otherwise simply ...
+ return{
+  await db.query("UPDATE country_counts SET count = count + 1 WHERE country_name = $1",
     [countryObject.country_name]
-  );
+  )
+}
 }
 
 // Helper function for /get-all-saved-countries
