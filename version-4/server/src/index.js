@@ -5,7 +5,7 @@ BOILERPLATE CODE TO SET UP SERVER
 import express from "express";
 
 // The framework that lets us easily build a web server
-import pg from "pg"; // pg stands for PostgreSQL, for talking to the database
+import pg, { escapeLiteral } from "pg"; // pg stands for PostgreSQL, for talking to the database
 import config from "./config.js"; // we need access to our database connection credentials
 
 // connect to our PostgreSQL database, or db for short
@@ -54,43 +54,43 @@ async function addOneUser(users) {
 // Helper function for /update-one-user
 
 async function updateOneCountryCount(countryObject) {
+  //first we check if  country count exists
 
-  //first we check if  country count exists 
+  await db.query(
+    "SELECT country_name,count FROM country_counts WHERE country_name = $1",
+    [countryObject.country_name]
+  );
   //then if it does not exist we want to add the country name and its initial count of 1 to the table
+  if (!countryObject.country_name) {
+    await db.query(
+      "INSERT INTO country_counts(country_name, count) VALUES ($1, 1)",
+      [countryObject.country_name]
+    );
+  }
   //else we increase the count by 1
+  else {
+    await db.query(
+      "UPDATE country_counts SET count = count + 1 WHERE country_name = $1",
+      [countryObject.country_name]
+    );
+  }
   //then return the existing country count
 
+  //then Update a Country Count By Incrementing Its Count By 1
+  //UPDATE country_counts
+  //SET count = count + 1
+  //WHERE country_name = 'Grenada';
 
-  // (
-  //SELECT country_name,count
-//FROM country_counts
-//WHERE country_name = 'Fiji';)
-//
-
-if (!countryObject.country_name){
-  await db.query("INSERT INTO saved_countries(country_name) VALUES ($1)", [
-    countryObject.country_name,
-  ]);
-};
-
-//then Insert One Country Count()0
-//INSERT INTO country_counts(country_name,count)
-//VALUES ('Venezuela', 1);)
-
-{await db.query("INSERT INTO country_counts(country_name,count) VALUES ($1, 1);)",[ countryObject.country_name])
-};
-
-//then Update a Country Count By Incrementing Its Count By 1
-//UPDATE country_counts
-//SET count = count + 1
-//WHERE country_name = 'Grenada';
-
-//otherwise simply ...
- return{
-  await db.query("UPDATE country_counts SET count = count + 1 WHERE country_name = $1",
+  //otherwise simply ...
+  const result = await db.query(
+    "SELECT country_name,count FROM country_counts WHERE country_name = $1",
     [countryObject.country_name]
-  )
-}
+  );
+  const newCount = result.rows[0].count;
+  console.log(newCount, "THIS is the object result");
+  return {
+    newCount: result.rows[0].count,
+  };
 }
 
 // Helper function for /get-all-saved-countries
@@ -143,8 +143,9 @@ app.post("/add-one-user", async (req, res) => {
 // POST /update-one-country-count
 app.post("/update-one-country-count", async (req, res) => {
   const countryObject = req.body;
-  updateOneCountryCount(countryObject);
-  res.send("The Count was successfully updated!");
+  const savedCount = await updateOneCountryCount(countryObject);
+  console.log(savedCount, "COUNTRYCOUNT RETURN");
+  res.json(savedCount);
 });
 
 // GET /get-all-saved-countries
