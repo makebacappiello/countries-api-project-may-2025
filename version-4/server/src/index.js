@@ -51,45 +51,18 @@ async function addOneUser(users) {
   );
 }
 
-// Helper function for /update-one-user
+// Helper function for /update-one-country-count
 
 async function updateOneCountryCount(countryObject) {
-  //first we check if  country count exists
-
-  await db.query(
-    "SELECT country_name,count FROM country_counts WHERE country_name = $1",
-    [countryObject.country_name]
-  );
-  //then if it does not exist we want to add the country name and its initial count of 1 to the table
-  if (!countryObject.country_name) {
-    await db.query(
-      "INSERT INTO country_counts(country_name, count) VALUES ($1, 1)",
-      [countryObject.country_name]
-    );
-  }
-  //else we increase the count by 1
-  else {
-    await db.query(
-      "UPDATE country_counts SET count = count + 1 WHERE country_name = $1",
-      [countryObject.country_name]
-    );
-  }
-  //then return the existing country count
-
-  //then Update a Country Count By Incrementing Its Count By 1
-  //UPDATE country_counts
-  //SET count = count + 1
-  //WHERE country_name = 'Grenada';
-
-  //otherwise simply ...
   const result = await db.query(
-    "SELECT country_name,count FROM country_counts WHERE country_name = $1",
+    `INSERT INTO country_counts (country_name,count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count AS "newCount"`,
     [countryObject.country_name]
   );
-  const newCount = result.rows[0].count;
-  console.log(newCount, "THIS is the object result");
+  console.log(result, "RSSULT");
+  const newCount = result.rows[0].newCount;
+  console.log(newCount, "NEW COUNT");
   return {
-    newCount: result.rows[0].count,
+    newCount,
   };
 }
 
@@ -136,15 +109,16 @@ app.get("/get-newest-user", async (req, res) => {
 // POST /add-one-user
 app.post("/add-one-user", async (req, res) => {
   const newUser = req.body;
-  addOneUser(newUser);
+  await addOneUser(newUser);
   res.send("The new user was successfully added!");
 });
 
 // POST /update-one-country-count
 app.post("/update-one-country-count", async (req, res) => {
   const countryObject = req.body;
+  // console.log(countryObject, "THIS BE COUNTRY OBJECT"); // note the format of object is not in json
   const savedCount = await updateOneCountryCount(countryObject);
-  console.log(savedCount, "COUNTRYCOUNT RETURN");
+  //console.log(savedCount, "COUNTRYCOUNT RETURN");
   res.json(savedCount);
 });
 
@@ -159,7 +133,7 @@ app.get("/get-all-saved-countries", async (req, res) => {
 // POST /save-one-country
 app.post("/save-one-country", async (req, res) => {
   const newCountryObject = req.body;
-  saveOneCountry(newCountryObject);
+  await saveOneCountry(newCountryObject);
   res.send("Success! The country is saved.");
 });
 
@@ -167,6 +141,6 @@ app.post("/save-one-country", async (req, res) => {
 
 app.post("/unsave-one-country", async (req, res) => {
   const unsaveCountryName = req.body;
-  unsaveOneCountry(unsaveCountryName);
+  await unsaveOneCountry(unsaveCountryName);
   res.send("Success! The country is unsaved!");
 });
