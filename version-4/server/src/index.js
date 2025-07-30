@@ -76,9 +76,10 @@ async function getAllSavedCountries() {
 // Helper function for /save-one-country
 
 async function saveOneCountry(newCountryObject) {
-  await db.query("INSERT INTO saved_countries(country_name) VALUES ($1)", [
-    newCountryObject.country_name,
-  ]);
+  await db.query(
+    "INSERT INTO saved_countries (country_name) VALUES ($1) ON CONFLICT (country_name) DO NOTHING;",
+    [newCountryObject.country_name]
+  );
 }
 
 // Helper function for /unsave-one-country:name
