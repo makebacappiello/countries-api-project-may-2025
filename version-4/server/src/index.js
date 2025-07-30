@@ -90,6 +90,13 @@ async function unsaveOneCountry(unsaveCountryName) {
   );
 }
 
+//Helper function for  /unsave-all-saved-countries
+
+async function unsaveAllSavedCountries() {
+  const result = await db.query("DELETE FROM saved_countries");
+  console.log(result);
+}
+
 /*--------------------------------
 API ENDPOINTS
 ---------------------------------*/
@@ -144,4 +151,11 @@ app.post("/unsave-one-country", async (req, res) => {
   const unsaveCountryName = req.body;
   await unsaveOneCountry(unsaveCountryName);
   res.send("Success! The country is unsaved!");
+});
+
+// POST /unsave-all-saved-countries
+
+app.post("/unsave-all-saved-countries", async (req, res) => {
+  await unsaveAllSavedCountries();
+  res.send("Success! All countries were unsaved");
 });
