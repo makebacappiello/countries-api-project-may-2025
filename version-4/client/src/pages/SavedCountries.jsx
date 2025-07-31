@@ -124,6 +124,39 @@ export default function SavedCountries({ apiData }) {
 
   console.log(formData.name);
 
+  async function handleUnsaveOneCountry(countryName) {
+    const unsaveOneCountry = async () => {
+      const response = await fetch("/api/unsave-one-country", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          country_name: countryName,
+        }),
+      });
+      const deletedData = await response.text();
+      console.log(deletedData, "TESTING DELETED DATA");
+    };
+    await unsaveOneCountry();
+  }
+  async function handleUnsaveAllCountries() {
+    const unsaveAllCountries = async () => {
+      const response = await fetch("/api/unsave-all-saved-countries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const deletedCountries = await response.text();
+      console.log(
+        deletedCountries,
+        "THERE HAS BEEN A DELETION ON ALL COUNTRIES!"
+      );
+    };
+    await unsaveAllCountries();
+  }
+
   // ___________________________________________SAVED COUNTRIES __________________________________________
 
   // this gets the full information filled card from the restAPI
@@ -242,16 +275,29 @@ export default function SavedCountries({ apiData }) {
 
           <div className="allCards">
             {filteredCountries.map((country, index) => (
-              <CountryCard
-                key={index}
-                img={country.flags?.svg || country.flags?.png}
-                name={country.name?.common}
-                population={country.population || "unknown"}
-                region={country.region || "unknown"}
-                capital={country.capital?.[0] || "N/A"}
-                borders={country.borders}
-              />
+              <div key={index} className="country-card-wrapper">
+                <CountryCard
+                  img={country.flags?.svg || country.flags?.png}
+                  name={country.name?.common}
+                  population={country.population || "unknown"}
+                  region={country.region || "unknown"}
+                  capital={country.capital?.[0] || "N/A"}
+                  borders={country.borders}
+                />
+                <button
+                  onClick={() => handleUnsaveOneCountry(country.name?.common)}
+                >
+                  Delete
+                </button>
+              </div>
             ))}
+            <div>
+              {/* delete button */}
+
+              <button onClick={() => handleUnsaveAllCountries()}>
+                Delete All
+              </button>
+            </div>
           </div>
         ) : (
           <p>No Country Saved Yet!</p>
