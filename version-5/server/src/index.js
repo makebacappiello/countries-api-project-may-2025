@@ -8,7 +8,7 @@ import express from "express";
 import pg, { escapeLiteral } from "pg"; // pg stands for PostgreSQL, for talking to the database
 // connect to our PostgreSQL database, or db for short
 const db = new pg.Pool({
-  connectionString: process.env.DARABASE_URL, // credentials to access the database — keep this private!
+  connectionString: process.env.DATABASE_URL, // credentials to access the database — keep this private!
   ssl: true, // we will use SSL encryption when connecting to the database
 });
 
