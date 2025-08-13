@@ -15,9 +15,11 @@ This interactive web app lets you explore countries from all over the world. You
 Here's a little sneak peek of the app in action!
 
 ### 🏠 (Home Page)
+
 <img width="1206" height="664" alt="Home Page" src="https://github.com/user-attachments/assets/357f00bc-0113-4272-b916-7f1878045adb" />
 
 ### 🇹🇹 (Country Detail Page)
+
 <img width="1205" height="647" alt="Country Detail Page" src="https://github.com/user-attachments/assets/d6ba7020-d8ae-41f5-9f3b-2543cff3461c" />
 
 ### 🌎 (Saved Countries Page)
@@ -27,8 +29,6 @@ Here's a little sneak peek of the app in action!
 <img width="798" height="663" alt="Profile Top" src="https://github.com/user-attachments/assets/4e7aaaf0-7250-4040-890e-ad1dcdb59042" />
 <img width="797" height="633" alt="Profile Mid" src="https://github.com/user-attachments/assets/cf08105d-da80-4296-944f-35b30c0bdaf2" />
 <img width="750" height="612" alt="Profile End" src="https://github.com/user-attachments/assets/6d1e38f9-e58c-4a56-8203-0235e329f29a" />
-
-
 
 ## 🚀 Live Site
 
@@ -74,22 +74,25 @@ I learned a ton! This was my first real dive into building a complete applicatio
 
 ### What I'm Proud Of
 
-I'm honestly just proud that it all works! Finishing my first full-stack project feels like a huge accomplishment. I'm especially happy with how the search and filter features came together to let users easily find what they're looking for. Getting the country detail pages to dynamically load the correct information was also a big win!
+I'm honestly just proud that it all works! Finishing my first full-stack project feels like a huge accomplishment. I'm especially happy with how the saved countries filter features came together to let users easily find their favorite countries. Getting the country detail pages to dynamically load the correct information was also a big win!
 
 ### What Was Challenging
 
-The biggest challenge was definitely managing all the different pieces of state. Figuring out how to make the search bar, the region filter, and the main country list all work together was tricky. Another tough spot was correctly displaying the full names of the bordering countries. The API provides them as codes (like 'FRA' or 'DEU'), so I had to figure out a way to map those codes back to their full country names from the main list of countries I had fetched.
+The biggest challenge was definitely managing all the different pieces of state. Figuring out how to do the increase view count, inputting the SQL and fetching the API calls were challenging. In general filerting the main country list so that the entire app would work was tricky. Another tough spot was correctly displaying the full names of the bordering countries. The API provides them as codes (like 'FRA' or 'DEU'), so I had to figure out a way to map those codes back to their full country names from the main list of countries I had fetched.
 
 ### Future Ideas
 
 If I had more time, I'd love to:
-Make the border countries on the detail page clickable, so users can easily navigate between them.
 
-Implement a light/dark mode toggle for user comfort.
+- Make the search bar.
 
-Add a "Sort by" feature to organize countries by population or name.
+- Make the border countries on the detail page clickable, so users can easily navigate between them.
 
-Add loading skeletons or spinners for a better user experience while the data is being fetched.
+- Implement a light/dark mode toggle for user comfort.
+
+- Add a "Sort by" feature to organize countries by population or name.
+
+- Add loading skeletons or spinners for a better user experience while the data is being fetched.
 
 ### 🙌 Credits
 
