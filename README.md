@@ -1,5 +1,3 @@
-## 📝 Project Title
-
 # 🌍 Where in the World? - A Country Explorer App
 
 Hey there! Welcome to my country explorer app. This was my very first full-stack project, built as a student at AnnieCannons.
@@ -17,10 +15,20 @@ This interactive web app lets you explore countries from all over the world. You
 Here's a little sneak peek of the app in action!
 
 ### 🏠 (Home Page)
+<img width="1206" height="664" alt="Home Page" src="https://github.com/user-attachments/assets/357f00bc-0113-4272-b916-7f1878045adb" />
 
 ### 🇹🇹 (Country Detail Page)
+<img width="1205" height="647" alt="Country Detail Page" src="https://github.com/user-attachments/assets/d6ba7020-d8ae-41f5-9f3b-2543cff3461c" />
 
 ### 🌎 (Saved Countries Page)
+
+<img width="1069" height="666" alt="MY Saved Countries" src="https://github.com/user-attachments/assets/7bcf25e8-1be4-462c-ba30-a85dc0a8ecf2" />
+
+<img width="798" height="663" alt="Profile Top" src="https://github.com/user-attachments/assets/4e7aaaf0-7250-4040-890e-ad1dcdb59042" />
+<img width="797" height="633" alt="Profile Mid" src="https://github.com/user-attachments/assets/cf08105d-da80-4296-944f-35b30c0bdaf2" />
+<img width="750" height="612" alt="Profile End" src="https://github.com/user-attachments/assets/6d1e38f9-e58c-4a56-8203-0235e329f29a" />
+
+
 
 ## 🚀 Live Site
 
