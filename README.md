@@ -1,31 +1,90 @@
-# Countries API Application
+## 📝 Project Title
 
-## 👋 Welcome!
+# 🌍 Where in the World? - A Country Explorer App
 
-Throughout the Backend course, you will build a full-stack web application that displays information about countries around the world.
+Hey there! Welcome to my country explorer app. This was my very first full-stack project, built as a student at AnnieCannons.
 
-![image](https://github.com/user-attachments/assets/33b74a77-21ae-4e00-bac0-9638f70890d4)
+## 📌 Description
 
-## 🔗 Resources
+This project was a requirement given by my school to put my new backend skills to the test in cunjunction with those I acquired in my frontend class. It was the last of 5 versions that led up to this point. The goal was to practice fetching data from a third-party API, managing application state in React, creating a user-friendly multi-page experience, and deploying it all for the world to see.
 
-- **Designs:** You will need to use this [Figma file](https://www.figma.com/design/YuEMNteoQic0h6RRiYprpV/Countries-API-Project?m=auto&t=C9b6FsfUdPspzaqu-1) for the designs
-- **API:** You will use the [REST Countries API](https://restcountries.com) to get the country data and flag images
-- **Documentation Guides:** The teaching team at AnnieCannons has provided some [handy guides](https://docs.google.com/document/d/18jxCUA0bebCyYaIHy8aaKMgOQH4w5-b-iCGDWpV4K4M/edit?tab=t.0#heading=h.ykdbmvmlp0ag) to help you use Github and other coding tools
+## Project and its purpose.
 
-## 🚀 The Roadmap
+This interactive web app lets you explore countries from all over the world. You can browse, search, and filter to find information about any country you're curious about!
 
-You will build multiple iterations of this project, where each version lives in a separate folder in the project repo. 
+## 🖼️ Screenshots
 
-You'll start out by building Version 0, which is just the Frontend UI of the Home page. 
+Here's a little sneak peek of the app in action!
 
-You'll end the course having built Version 5, which is a full-stack web application where you have built every layer yourself: the frontend with React, the API with Express and Node.js, and the database with PostgreSQL. 
+### 🏠 (Home Page)
 
-| Version | Feature added | Where data is stored | 
-| ------- | ---------- | ---- |
-| 0 | Frontend UI - Home page | No data stored. |
-| 1 | Frontend UI - Home page, SavedCountries page, CountryDetail page| No data stored. |
-| 2 | Local Storage | Data is stored locally in the browser with Local Storage. |
-| 3 | Fetch API | Data is stored remotely in a backend provided by the instructor. I have no control over the backend, but I can store and retrieve data from the frontend using HTTP requests. |
-| 4 | Local Postgres Database with API layer + Node.js | Data is stored in a local database, and I am responsible for how it is called and received (or placed) in the database. I control and have built all aspects of the data communication and the data storage in the database. |
-| 5 | Remote Postgres Database with API layer + Node.js | I have deployed my database to a remote server! |
+### 🇹🇹 (Country Detail Page)
 
+### 🌎 (Saved Countries Page)
+
+## 🚀 Live Site
+
+### Check out the live version here!
+
+https://countries-api-version-five.netlify.app/
+
+## ✨ Features
+
+### Here's what you can do in the app:
+
+- 🌐 Browse All Countries: See a list of all countries on the homepage when you first load the site.
+
+- 🗺️ Filter Saved Countries: Narrow down your search by selecting your saved countries like Africa, Americas, Asia, Europe, or Oceania.
+
+- 📖 View Detailed Information: Click on any country to see more details, like its native name, capital, population, currency, languages, and a list of its bordering countries.
+
+- 📱 Responsive Design: The app looks great on both desktop and mobile devices.
+
+- 💁🏽‍♀️ Add your profile: This brings a personalised touch to your Saved Countries Page. By filling out the form and pressing the submit button, your name will show on the Welcome screen title with a reflection of your Bio provided.
+
+## 🛠️ Tech Stack
+
+This project was built using a modern frontend stack:
+
+1. **Languages:** HTML, CSS, PostgreSQL, JavaScript (ES6+)
+
+2. **Library:** _React._
+
+3. **Routing:** _React Router._
+
+4. **Build Tool:** _Vite._
+
+5. **API:** _REST Countries API._
+
+6. **Deployment:** _Netlify, Render._
+
+## 💭 Reflections
+
+### What I Learned
+
+I learned a ton! This was my first real dive into building a complete application with React. I got comfortable with core concepts like useState and useEffect for managing state and side effects (like fetching API data). Implementing client-side routing with React Router was a game-changer for creating a smooth, multi-page feel without page reloads.
+
+### What I'm Proud Of
+
+I'm honestly just proud that it all works! Finishing my first full-stack project feels like a huge accomplishment. I'm especially happy with how the search and filter features came together to let users easily find what they're looking for. Getting the country detail pages to dynamically load the correct information was also a big win!
+
+### What Was Challenging
+
+The biggest challenge was definitely managing all the different pieces of state. Figuring out how to make the search bar, the region filter, and the main country list all work together was tricky. Another tough spot was correctly displaying the full names of the bordering countries. The API provides them as codes (like 'FRA' or 'DEU'), so I had to figure out a way to map those codes back to their full country names from the main list of countries I had fetched.
+
+### Future Ideas
+
+If I had more time, I'd love to:
+Make the border countries on the detail page clickable, so users can easily navigate between them.
+
+Implement a light/dark mode toggle for user comfort.
+
+Add a "Sort by" feature to organize countries by population or name.
+
+Add loading skeletons or spinners for a better user experience while the data is being fetched.
+
+### 🙌 Credits
+
+A huge shout-out to my instructors and cohort at AnnieCannons for all the support and guidance.
+This project was inspired by the REST Countries API challenge on Frontend Mentor.
+The app wouldn't exist without the awesome and free REST Countries API.
