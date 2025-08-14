@@ -52,9 +52,32 @@ https://countries-api-version-five.netlify.app/
 
 ## 🛠️ Tech Stack
 
-This project was built using a modern frontend stack:
+This project is a full-stack application built with PostgreSQL, Express, React, Node.js.
 
-1. **Languages:** HTML, CSS, PostgreSQL, JavaScript (ES6+)
+### Frontend
+
+- **React:** For building the dynamic and responsive user interface.
+- **React Router:** For client-side routing to create a multi-page feel.
+- **Fetch API:** Used the browser's built-in `fetch` for all HTTP requests to the backend API.
+- **HTML & CSS:** For the core structure and presentation.
+
+### Backend
+
+- **Node.js:** As the JavaScript runtime environment.
+- **Express.js:** As the web server framework to build the RESTful API.
+- **PostgreSQL:** As the relational database to store and manage country data.
+- **Neon:** The serverless PostgreSQL platform used to host the database.
+
+### Development & Deployment Tools
+
+- **db fiddle:** Used during the development phase to design, prototype, and test the SQL database schema and queries.
+- **Git & GitHub:** For version control and code hosting.
+- **Netlify:** For continuous deployment of the frontend React application.
+- **Render:** For hosting the backend Express API server.
+
+### Synopsis
+
+1. **Languages:** HTML, CSS, PostgreSQL, JavaScript (ES6+), Express, React, Node.js.
 
 2. **Library:** _React._
 
@@ -70,9 +93,24 @@ This project was built using a modern frontend stack:
 
 ### What I Learned
 
-I learned a ton! This was my first real dive into building a complete application with React. I got comfortable with core concepts like useState and useEffect for managing state and side effects (like fetching API data). Implementing client-side routing with React Router was a game-changer for creating a smooth, multi-page feel without page reloads.
+This was my first full-stack project and it was an incredible learning experience that taught me how to connect a frontend client to a backend I built from scratch.
 
-### What I'm Proud Of
+#### 1. Full-Stack Development
+
+- **Full-Stack Integration:** I learned how to orchestrate a complete request-response cycle: a React component triggers a request using the **Fetch API** to a specific backend endpoint. The Express server then processes that request, queries the PostgreSQL database, and sends a JSON response back to the client to be rendered.
+- **RESTful API Design:** I gained hands-on experience designing and building a RESTful API with Express, creating routes for fetching all saved countries (`GET /get-all-saved-countries`) and newest user (`GET /get-newest-user`).
+- **Asynchronous JavaScript:** I solidified my understanding of asynchronous JavaScript by using `async/await` syntax to handle API calls with `fetch`, ensuring the user interface remained responsive while waiting for data from the server.
+
+#### 2. Backend Skills
+
+- **Server-Side Logic:** I deepened my understanding of Node.js and how to create a robust server using Express such as stringify and parsing request bodies.
+
+#### 3. Frontend Skills
+
+- **State Management:** I solidified my skills in managing complex application state in React, including loading states, error handling, and storing fetched API data.
+- **Dynamic Routing:** I effectively used React Router to create dynamic routes for the country detail pages, passing URL parameters to fetch specific data.
+
+### What I'm Proud Of:
 
 I'm honestly just proud that it all works! Finishing my first full-stack project feels like a huge accomplishment. I'm especially happy with how the saved countries filter features came together to let users easily find their favorite countries. Getting the country detail pages to dynamically load the correct information was also a big win!
 
@@ -94,7 +132,7 @@ If I had more time, I'd love to:
 
 - Add loading skeletons or spinners for a better user experience while the data is being fetched.
 
-### 🙌 Credits
+## 🙌 Credits
 
 A huge shout-out to my instructors and cohort at AnnieCannons for all the support and guidance.
 This project was inspired by the REST Countries API challenge on Frontend Mentor.

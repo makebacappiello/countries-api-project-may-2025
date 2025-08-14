@@ -56,7 +56,7 @@ async function updateOneCountryCount(countryObject) {
     `INSERT INTO country_counts (country_name,count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count AS "newCount"`,
     [countryObject.country_name]
   );
-  console.log(result, "RSSULT");
+  console.log(result, "RESULT");
   const newCount = result.rows[0].newCount;
   console.log(newCount, "NEW COUNT");
   return {
