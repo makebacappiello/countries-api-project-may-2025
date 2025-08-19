@@ -75,20 +75,6 @@ This project is a full-stack application built with PostgreSQL, Express, React, 
 - **Netlify:** For continuous deployment of the frontend React application.
 - **Render:** For hosting the backend Express API server.
 
-### Synopsis
-
-1. **Languages:** HTML, CSS, PostgreSQL, JavaScript (ES6+), Express, React, Node.js.
-
-2. **Library:** _React._
-
-3. **Routing:** _React Router._
-
-4. **Build Tool:** _Vite._
-
-5. **API:** _REST Countries API._
-
-6. **Deployment:** _Netlify, Render._
-
 ## 💭 Reflections
 
 ### What I Learned
