@@ -121,5 +121,5 @@ If I had more time, I'd love to:
 ## 🙌 Credits
 
 A huge shout-out to my instructors and cohort at AnnieCannons for all the support and guidance.
-This project was inspired by the REST Countries API challenge on Frontend Mentor.
+This project was an assignment given to me on the AnnieCannons Assignment for the Backend Class.
 The app wouldn't exist without the awesome and free REST Countries API.
