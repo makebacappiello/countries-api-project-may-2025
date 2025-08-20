@@ -4,7 +4,7 @@ Hey there! Welcome to my country explorer app. This was my very first full-stack
 
 ## 📌 Description
 
-This project was a requirement given by my school to put my new backend skills to the test in cunjunction with those I acquired in my frontend class. It was the last of 5 versions that led up to this point. The goal was to practice fetching data from a third-party API, managing application state in React, creating a user-friendly multi-page experience, and deploying it all for the world to see.
+This project was a requirement given by my school to put my new backend skills to the test in cunjunction with those I acquired in my frontend class. It was the last of 5 versions that led up to this point. The goal was to practice fetching data from a third-party API, managing application state in React, creating a user-friendly multi-page experience, I built a database using SQL and an API using Node.js and Express. I then  deployed it all for the world to see.
 
 ## Project and its purpose.
 
