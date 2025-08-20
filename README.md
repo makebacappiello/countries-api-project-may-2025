@@ -4,7 +4,16 @@ Hey there! Welcome to my country explorer app. This was my very first full-stack
 
 ## 📌 Description
 
-This project was a requirement given by my school to put my new backend skills to the test in cunjunction with those I acquired in my frontend class. It was the last of 5 versions that led up to this point. The goal was to practice fetching data from a third-party API, managing application state in React, creating a user-friendly multi-page experience, I built a database using SQL and an API using Node.js and Express. I then  deployed it all for the world to see.
+This project was a requirement given by my school to put my new backend skills to the test in cunjunction with those I acquired in my frontend class. It was the last stage of 5 versions explained below:
+
+### STAGES
+
+- The version 0 challenge was to build a website with React.js that pulls country data from the localData.js file.
+- The version 1 challenge was to rebuild the the website with React.js that pulls country data from the REST Countries API.
+- The version 2 challenge was to build on the Version 1 of the Countries API app by saving data in the browser using Local Storage. This made the app more personal, dynamic, and interactive!
+- The version 3 upgraded my project to connect with a real API!
+- The version 4 shows where I built my own backend from scratch!
+- The goal of version 5 was to deploy it so it's fully accessible on the internet, then write my very first README to explain my project to the world 🚀 
 
 ## Project and its purpose.
 
