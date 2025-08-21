@@ -17,7 +17,7 @@ This project was a requirement given by my school to put my new backend skills t
 
 ## Project and its purpose.
 
-This interactive web app lets you explore countries from all over the world. You can browse, search, and filter to find information about any country you're curious about!
+This interactive web app lets you explore countries from all over the world. You can browse and save information about any country you're curious about!
 
 ## 🖼️ Screenshots
 
